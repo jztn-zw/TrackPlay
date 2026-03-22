@@ -28,30 +28,6 @@ window.addEventListener("load", () => {
   getUsers();
 });
 
-// function getUsers() {
-//   let html = "";
-//   //FETCH API
-//   fetch("https://trackplay.onrender.com/api/games", { mode: "cors" })
-//     .then((response) => {
-//       console.log(response);
-//       return response.json();
-//     })
-//     .then((data) => {
-//       console.log(data);
-//       data.forEach((element) => {
-//         html += `<li class="grid grid-cols-6 gap-4 flex-1 justify-between"><span>${element.game_name}</span> <span> ${element.category}</span> <span>${element.difficulty}</span> <span>${element.rating}</span>  <span>${element.status}</span>
-//             <div>
-//             <a href="javascript:void(0)" onClick="deleteMember(${element.id})">Delete</a>
-//             <a href="javascript:void(0)" onClick="updateMember(${element.id})">Update</a></div></li>`;
-//       });
-
-//       content.innerHTML = html;
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//     });
-// }
-
 function getUsers() {
   let html = "";
   //FETCH API
