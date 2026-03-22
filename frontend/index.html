@@ -10,7 +10,6 @@
 
 <div id="app">
 
-  <!-- TOP BAR -->
   <header id="topbar">
     <div class="topbar-brand">
       <div class="logo-mark">TP</div>
@@ -22,14 +21,12 @@
     </div>
   </header>
 
-  <!-- LEFT PANEL — FORM -->
   <aside id="left-panel">
 
     <p class="panel-heading">Add Entry</p>
 
     <form id="gameForm" autocomplete="off">
 
-      <!-- Hidden ID field required by PUT in index.js -->
       <input type="hidden" id="ID">
 
       <div class="form-group">
@@ -46,9 +43,10 @@
         <label for="difficulty">Difficulty</label>
         <div class="select-wrapper">
           <select id="difficulty">
-            <option value="easy">Easy</option>
-            <option value="medium" selected>Medium</option>
-            <option value="hard">Hard</option>
+            <option value="" disabled selected>Select difficulty</option>
+            <option value="easy">⬡  Easy</option>
+            <option value="medium">◈  Medium</option>
+            <option value="hard">⬟  Hard</option>
           </select>
         </div>
       </div>
@@ -71,9 +69,10 @@
         <label for="status">Status</label>
         <div class="select-wrapper">
           <select id="status">
-            <option value="playing">Playing</option>
-            <option value="completed">Completed</option>
-            <option value="dropped">Dropped</option>
+            <option value="" disabled selected>Select status</option>
+            <option value="playing">▶  Playing</option>
+            <option value="completed">✓  Completed</option>
+            <option value="dropped">✕  Dropped</option>
           </select>
         </div>
       </div>
@@ -86,15 +85,29 @@
     </form>
   </aside>
 
-  <!-- RIGHT PANEL — BENTO CARD GRID -->
   <main id="right-panel">
-
-    <!-- Bento cards injected here by index.js -->
     <ul id="gameList"></ul>
-
   </main>
 </div>
 
 <script src="index.js"></script>
+<script>
+  // Sync select color class on change + on load (for update pre-fill)
+  function syncSelect(id, prefix) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const apply = () => {
+      el.classList.remove(...[...el.classList].filter(c => c.startsWith(prefix)));
+      if (el.value) el.classList.add(prefix + el.value);
+      if (id === 'rating') el.classList.toggle('has-value', !!el.value);
+    };
+    el.addEventListener('change', apply);
+    apply();
+  }
+  syncSelect('difficulty', 'val-');
+  syncSelect('status',     'val-');
+  syncSelect('rating',     'val-');
+</script>
+
 </body>
 </html>
