@@ -1,50 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TrackPlay</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrackPlay</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <h1>TrackPlay</h1>
+<div id="app">
 
-    <form id="gameForm">
-        <label>Game Name:</label><br>
-        <input type="text" id="game_name" required><br><br>
+  <!-- TOP BAR -->
+  <header id="topbar">
+    <div class="topbar-brand">
+      <div class="logo-mark">TP</div>
+      <h1>TrackPlay</h1>
+    </div>
+    <div class="topbar-meta">
+      <div class="dot"></div>
+      <span>Game Tracker</span>
+    </div>
+  </header>
 
-        <label>Category:</label><br>
-        <input type="text" id="category"><br><br>
+  <!-- LEFT PANEL — FORM -->
+  <aside id="left-panel">
 
-        <label>Difficulty:</label><br>
-        <select id="difficulty">
+    <p class="panel-heading">Add Entry</p>
+
+    <form id="gameForm" autocomplete="off">
+
+      <!-- Hidden ID field required by PUT in index.js -->
+      <input type="hidden" id="ID">
+
+      <div class="form-group">
+        <label for="game_name">Game Name</label>
+        <input type="text" id="game_name" placeholder="e.g. Elden Ring" required>
+      </div>
+
+      <div class="form-group">
+        <label for="category">Category</label>
+        <input type="text" id="category" placeholder="e.g. RPG, FPS, Strategy">
+      </div>
+
+      <div class="form-group">
+        <label for="difficulty">Difficulty</label>
+        <div class="select-wrapper">
+          <select id="difficulty">
             <option value="easy">Easy</option>
-            <option value="medium">Medium</option>
+            <option value="medium" selected>Medium</option>
             <option value="hard">Hard</option>
-        </select><br><br>
+          </select>
+        </div>
+      </div>
 
-        <label>Rating (1-5):</label><br>
-        <input type="number" id="rating" min="1" max="5"><br><br>
+      <div class="form-group">
+        <label for="rating">Rating</label>
+        <div class="select-wrapper">
+          <select id="rating">
+            <option value="" disabled selected>Select rating</option>
+            <option value="1">★☆☆☆☆ — 1 / 5</option>
+            <option value="2">★★☆☆☆ — 2 / 5</option>
+            <option value="3">★★★☆☆ — 3 / 5</option>
+            <option value="4">★★★★☆ — 4 / 5</option>
+            <option value="5">★★★★★ — 5 / 5</option>
+          </select>
+        </div>
+      </div>
 
-        <label>Status:</label><br>
-        <select id="status">
+      <div class="form-group">
+        <label for="status">Status</label>
+        <div class="select-wrapper">
+          <select id="status">
             <option value="playing">Playing</option>
             <option value="completed">Completed</option>
             <option value="dropped">Dropped</option>
-        </select><br><br>
+          </select>
+        </div>
+      </div>
 
-        <button id="add" type="submit">Add Game</button>
-        <button id="update" type="button">Update Game</button>
+      <div class="form-actions">
+        <button id="add" type="submit" class="btn btn-primary">Add Game</button>
+        <button id="update" type="button" class="btn btn-secondary">Update</button>
+      </div>
+
     </form>
+  </aside>
 
-    <hr>
+  <!-- RIGHT PANEL — BENTO CARD GRID -->
+  <main id="right-panel">
 
-    <h2>Game List</h2>
-    <ul id="gameList">
-        
-    </ul>
+    <!-- Bento cards injected here by index.js -->
+    <ul id="gameList"></ul>
 
-    <script src="index.js"></script>
+  </main>
+</div>
+
+<script src="index.js"></script>
 </body>
 </html>
