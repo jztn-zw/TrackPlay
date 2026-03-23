@@ -11,6 +11,11 @@ submit.addEventListener("click", () => {
   let status = document.querySelector("#status").value;
   let formData = { game_name, category, difficulty, rating, status };
 
+  if(!game_name || !category || !difficulty || !rating || !status){
+      alert("Please fill all required fields!")
+      return;
+    }
+
   fetch("https://trackplay.onrender.com/api/games", {
     method: "POST",
     body: JSON.stringify(formData),
